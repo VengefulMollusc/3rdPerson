@@ -10,7 +10,7 @@ public class InputController : MonoBehaviour
     [SerializeField]
     private string xMovAxis = "Horizontal";
     [SerializeField]
-    private string zMovAxis = "Vertical";
+    private string yMovAxis = "Vertical";
     [SerializeField]
     private string xCamAxis = "LookX";
     [SerializeField]
@@ -30,26 +30,25 @@ public class InputController : MonoBehaviour
     void Update()
     {
         // Get vertical and horizontal input vectors
-        Vector3 movement = new Vector3(Input.GetAxisRaw(xMovAxis), 0f, Input.GetAxisRaw(zMovAxis));
-        currentMotor.Move(movement);
+        currentMotor.Move(Input.GetAxisRaw(xMovAxis), Input.GetAxisRaw(yMovAxis));
 
-        // Get vertical and horizontal camera movement
-        float xMov = Input.GetAxisRaw(xCamAxis) * Time.deltaTime;
-        float yMov = Input.GetAxisRaw(yCamAxis) * Time.deltaTime;
-        currentMotor.MoveCamera(xMov, yMov);
+        //// Get vertical and horizontal camera movement
+        //float xMov = Input.GetAxisRaw(xCamAxis) * Time.deltaTime;
+        //float yMov = Input.GetAxisRaw(yCamAxis) * Time.deltaTime;
+        //currentMotor.MoveCamera(xMov, yMov);
 
-        // Check for Jump
-        if (Input.GetButtonDown(jumpButton))
-            currentMotor.Jump(true);
+        //// Check for Jump
+        //if (Input.GetButtonDown(jumpButton))
+        //    currentMotor.Jump(true);
 
-        if (Input.GetButtonUp(jumpButton))
-            currentMotor.Jump(false);
+        //if (Input.GetButtonUp(jumpButton))
+        //    currentMotor.Jump(false);
 
-        // Check for Crouch
-        if (Input.GetButtonDown(crouchButton))
-            currentMotor.Crouch(true);
+        //// Check for Crouch
+        //if (Input.GetButtonDown(crouchButton))
+        //    currentMotor.Crouch(true);
 
-        if (Input.GetButtonUp(crouchButton))
-            currentMotor.Crouch(false);
+        //if (Input.GetButtonUp(crouchButton))
+        //    currentMotor.Crouch(false);
     }
 }

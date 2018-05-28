@@ -25,23 +25,8 @@ public class PlayerMotor : Motor
         rb.velocity = inputVector * movementSpeed;
     }
 
-    public override void Move(Vector3 input)
+    public override void Move(float xMov, float yMov)
     {
-        inputVector = input;
-    }
-
-    public override void MoveCamera(float xMov, float yMov)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void Jump(bool pressed)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void Crouch(bool pressed)
-    {
-        throw new System.NotImplementedException();
+        inputVector = new Vector3(xMov, 0f, yMov); ;
     }
 }

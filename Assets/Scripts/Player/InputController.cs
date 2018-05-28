@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InputController : MonoBehaviour
 {
-    [SerializeField] private Motor playerMotor;
+    [SerializeField] private Motor currentMotor;
 
     [Header("Control Settings")]
     [SerializeField]
@@ -31,25 +31,25 @@ public class InputController : MonoBehaviour
     {
         // Get vertical and horizontal input vectors
         Vector3 movement = new Vector3(Input.GetAxisRaw(xMovAxis), 0f, Input.GetAxisRaw(zMovAxis));
-        playerMotor.Move(movement);
+        currentMotor.Move(movement);
 
         // Get vertical and horizontal camera movement
         float xMov = Input.GetAxisRaw(xCamAxis) * Time.deltaTime;
         float yMov = Input.GetAxisRaw(yCamAxis) * Time.deltaTime;
-        playerMotor.MoveCamera(xMov, yMov);
+        currentMotor.MoveCamera(xMov, yMov);
 
         // Check for Jump
         if (Input.GetButtonDown(jumpButton))
-            playerMotor.Jump(true);
+            currentMotor.Jump(true);
 
         if (Input.GetButtonUp(jumpButton))
-            playerMotor.Jump(false);
+            currentMotor.Jump(false);
 
         // Check for Crouch
         if (Input.GetButtonDown(crouchButton))
-            playerMotor.Crouch(true);
+            currentMotor.Crouch(true);
 
         if (Input.GetButtonUp(crouchButton))
-            playerMotor.Crouch(false);
+            currentMotor.Crouch(false);
     }
 }

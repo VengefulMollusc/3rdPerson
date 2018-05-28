@@ -12,9 +12,9 @@ public class InputController : MonoBehaviour
     [SerializeField]
     private string zMovAxis = "Vertical";
     [SerializeField]
-    private string xLookAxis = "LookX";
+    private string xCamAxis = "LookX";
     [SerializeField]
-    private string yLookAxis = "LookY";
+    private string yCamAxis = "LookY";
     [SerializeField]
     private string jumpButton = "Jump";
     [SerializeField]
@@ -34,8 +34,8 @@ public class InputController : MonoBehaviour
         playerMotor.Move(movement);
 
         // Get vertical and horizontal camera movement
-        float xMov = Input.GetAxisRaw(xLookAxis) * Time.deltaTime;
-        float yMov = Input.GetAxisRaw(yLookAxis) * Time.deltaTime;
+        float xMov = Input.GetAxisRaw(xCamAxis) * Time.deltaTime;
+        float yMov = Input.GetAxisRaw(yCamAxis) * Time.deltaTime;
         playerMotor.MoveCamera(xMov, yMov);
 
         // Check for Jump

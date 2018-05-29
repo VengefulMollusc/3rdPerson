@@ -5,28 +5,29 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class ShipMotor : Motor
 {
-    private float moveSpeed = 1f;
-    private float turnSpeed = 10f;
-    private const float turnMoveSpeedMod = 0.75f;
+    private const float baseMoveSpeed = 1f;
+    private const float baseTurnSpeed = 10f;
 
-    private float throttleAdjustSpeed = 1f;
-    private float yawAdjustSpeed = 1f;
+    private const float throttleAdjustSpeed = 1f;
+    private const float yawAdjustSpeed = 1f;
 
-    private const float accelerationRate = 0.01f;
-
-    private float currentSpeed;
+    private const float accelerationRate = 0.02f; // 0.01
+    //private const float decelerationRate = 0.01f;
 
     private const float reverseSpeed = -0.5f;
 
-    private float currentThrottle;
-    private float currentYawStrength;
+    private float throttleState;
+    private float yawControlState;
 
-    private Rigidbody rb;
+    private float currentSpeed;
+    private float currentTurnSpeed;
+
+    //private Rigidbody rb;
 
     // Use this for initialization
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        //rb = GetComponent<Rigidbody>();
     }
 
     public override void Move(float xMov, float yMov)
@@ -40,31 +41,51 @@ public class ShipMotor : Motor
         UpdateSpeed();
         transform.position += transform.forward * currentSpeed;
 
-        float yawStrength = currentYawStrength * turnSpeed * Time.deltaTime *
-                            Utilities.MapValues(Mathf.Abs(currentThrottle), 0f, 1f, 1f, turnMoveSpeedMod);
-        transform.rotation *= Quaternion.AngleAxis(yawStrength, Vector3.up);
+        UpdateTurn();
+        Quaternion rot = Quaternion.AngleAxis(currentTurnSpeed, Vector3.up);
+        transform.rotation *= rot;
 
-        Debug.Log(currentThrottle.ToString("F2") + " " + currentYawStrength.ToString("F2") + " : " + (currentSpeed / Time.deltaTime).ToString("F2") + " " + (yawStrength / Time.deltaTime).ToString("F2"));
+        // Debugging
+        int stepSize = 10;
+        Vector3 projectedVector = transform.forward * currentSpeed * stepSize;
+        Vector3 startPos = transform.position;
+        rot = Quaternion.AngleAxis(currentTurnSpeed * stepSize, Vector3.up);
+        for (int i = 0; i < 100; i++)
+        {
+            Debug.DrawLine(startPos, startPos + projectedVector, Color.green, 0.2f);
+            startPos += projectedVector;
+            projectedVector = rot * projectedVector;
+        }
+        Debug.Log(throttleState.ToString("F2") + " " + yawControlState.ToString("F2") + " : " + (currentSpeed / Time.deltaTime).ToString("F2") + " " + (currentTurnSpeed / Time.deltaTime).ToString("F2"));
     }
 
     void UpdateSpeed()
     {
-        float throttleSpeed = moveSpeed * currentThrottle * Time.deltaTime;
+        float targetSpeed = baseMoveSpeed * throttleState * Time.deltaTime;
+        float diff = targetSpeed - currentSpeed;
 
-        float diff = throttleSpeed - currentSpeed;
-
+        //currentSpeed += diff * ((diff > 0f) ? accelerationRate : decelerationRate);
         currentSpeed += diff * accelerationRate;
+    }
+
+    void UpdateTurn()
+    {
+        float targetTurnSpeed = yawControlState * baseTurnSpeed * Time.deltaTime;
+        float diff = targetTurnSpeed - currentTurnSpeed;
+
+        currentTurnSpeed += diff * accelerationRate;
+        //* Utilities.MapValues(Mathf.Abs(currentSpeed), 0f, baseMoveSpeed * Time.deltaTime, 1f, turnMoveSpeedMod);
     }
 
     void AdjustThrottle(float adjustVal)
     {
-        currentThrottle += adjustVal * throttleAdjustSpeed * Time.deltaTime;
-        currentThrottle = Mathf.Clamp(currentThrottle, reverseSpeed, 1f);
+        throttleState += adjustVal * throttleAdjustSpeed * Time.deltaTime;
+        throttleState = Mathf.Clamp(throttleState, reverseSpeed, 1f);
     }
 
     void AdjustYaw(float adjustVal)
     {
-        currentYawStrength += adjustVal * yawAdjustSpeed * Time.deltaTime;
-        currentYawStrength = Mathf.Clamp(currentYawStrength, -1f, 1f);
+        yawControlState += adjustVal * yawAdjustSpeed * Time.deltaTime;
+        yawControlState = Mathf.Clamp(yawControlState, -1f, 1f);
     }
 }

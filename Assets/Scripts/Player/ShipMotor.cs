@@ -5,12 +5,16 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class ShipMotor : Motor
 {
-    [SerializeField] private float moveSpeed = 1f;
-    [SerializeField] private float turnSpeed = 1f;
+    private float moveSpeed = 1f;
+    private float turnSpeed = 10f;
     private const float turnMoveSpeedMod = 0.75f;
 
-    [SerializeField] private float throttleAdjustSpeed = 1f;
-    [SerializeField] private float yawAdjustSpeed = 1f;
+    private float throttleAdjustSpeed = 1f;
+    private float yawAdjustSpeed = 1f;
+
+    private const float accelerationRate = 0.01f;
+
+    private float currentSpeed;
 
     private const float reverseSpeed = -0.5f;
 
@@ -25,21 +29,31 @@ public class ShipMotor : Motor
         rb = GetComponent<Rigidbody>();
     }
 
+    public override void Move(float xMov, float yMov)
+    {
+        AdjustThrottle(yMov);
+        AdjustYaw(xMov);
+    }
+
     void Update()
     {
-        transform.position += transform.forward * moveSpeed * currentThrottle * Time.deltaTime;
+        UpdateSpeed();
+        transform.position += transform.forward * currentSpeed;
 
         float yawStrength = currentYawStrength * turnSpeed * Time.deltaTime *
                             Utilities.MapValues(Mathf.Abs(currentThrottle), 0f, 1f, 1f, turnMoveSpeedMod);
         transform.rotation *= Quaternion.AngleAxis(yawStrength, Vector3.up);
 
-        Debug.Log(currentThrottle + " " + yawStrength);
+        Debug.Log(currentThrottle.ToString("F2") + " " + currentYawStrength.ToString("F2") + " : " + (currentSpeed / Time.deltaTime).ToString("F2") + " " + (yawStrength / Time.deltaTime).ToString("F2"));
     }
 
-    public override void Move(float xMov, float yMov)
+    void UpdateSpeed()
     {
-        AdjustThrottle(yMov);
-        AdjustYaw(xMov);
+        float throttleSpeed = moveSpeed * currentThrottle * Time.deltaTime;
+
+        float diff = throttleSpeed - currentSpeed;
+
+        currentSpeed += diff * accelerationRate;
     }
 
     void AdjustThrottle(float adjustVal)

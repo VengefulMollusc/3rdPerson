@@ -6,7 +6,8 @@ using UnityEngine;
 public class ShipMotor : Motor
 {
     private const float baseMoveSpeed = 1f;
-    private const float baseTurnSpeed = 10f;
+    private const float baseTurnSpeed = 20f;
+    private const float turnMoveSpeedMod = 0.5f;
 
     private const float throttleAdjustSpeed = 1f;
     private const float yawAdjustSpeed = 1f;
@@ -56,6 +57,7 @@ public class ShipMotor : Motor
             startPos += projectedVector;
             projectedVector = rot * projectedVector;
         }
+        Debug.DrawLine(transform.position, transform.position + transform.forward * 10f, Color.cyan, 0.2f);
         Debug.Log(throttleState.ToString("F2") + " " + yawControlState.ToString("F2") + " : " + (currentSpeed / Time.deltaTime).ToString("F2") + " " + (currentTurnSpeed / Time.deltaTime).ToString("F2"));
     }
 
@@ -70,11 +72,10 @@ public class ShipMotor : Motor
 
     void UpdateTurn()
     {
-        float targetTurnSpeed = yawControlState * baseTurnSpeed * Time.deltaTime;
+        float targetTurnSpeed = yawControlState * baseTurnSpeed * Time.deltaTime * Utilities.MapValues(Mathf.Abs(currentSpeed), 0f, baseMoveSpeed * Time.deltaTime, 1f, turnMoveSpeedMod);
         float diff = targetTurnSpeed - currentTurnSpeed;
 
         currentTurnSpeed += diff * accelerationRate;
-        //* Utilities.MapValues(Mathf.Abs(currentSpeed), 0f, baseMoveSpeed * Time.deltaTime, 1f, turnMoveSpeedMod);
     }
 
     void AdjustThrottle(float adjustVal)

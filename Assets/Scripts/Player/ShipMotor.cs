@@ -5,14 +5,19 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class ShipMotor : Motor
 {
-    private const float baseMoveSpeed = 1f;
-    private const float baseTurnSpeed = 20f;
-    private const float turnMoveSpeedMod = 0.5f;
+    [SerializeField]
+    private float baseMoveSpeed = 1f; // 1f
+
+    [SerializeField]
+    private float baseTurnSpeed = 20f; // 20f
+
+    private const float moveSpeedTurnMod = 0.5f;
+    private const float turnMoveSpeedMod = 0.75f;
 
     private const float throttleAdjustSpeed = 1f;
     private const float yawAdjustSpeed = 1f;
 
-    private const float accelerationRate = 0.02f; // 0.01
+    private const float accelerationRate = 1f; // 0.01
     //private const float decelerationRate = 0.01f;
 
     private const float reverseSpeed = -0.5f;
@@ -63,16 +68,17 @@ public class ShipMotor : Motor
 
     void UpdateSpeed()
     {
-        float targetSpeed = baseMoveSpeed * throttleState * Time.deltaTime;
+        float targetSpeed = throttleState * baseMoveSpeed * Time.deltaTime * 
+            Utilities.MapValues(Mathf.Abs(currentTurnSpeed * currentTurnSpeed), 0f, baseTurnSpeed * Time.deltaTime, 1f, moveSpeedTurnMod); 
         float diff = targetSpeed - currentSpeed;
-
-        //currentSpeed += diff * ((diff > 0f) ? accelerationRate : decelerationRate);
+        
         currentSpeed += diff * accelerationRate;
     }
 
     void UpdateTurn()
     {
-        float targetTurnSpeed = yawControlState * baseTurnSpeed * Time.deltaTime * Utilities.MapValues(Mathf.Abs(currentSpeed), 0f, baseMoveSpeed * Time.deltaTime, 1f, turnMoveSpeedMod);
+        float targetTurnSpeed = yawControlState * baseTurnSpeed * Time.deltaTime * 
+            Utilities.MapValues(Mathf.Abs(currentSpeed), 0f, baseMoveSpeed * Time.deltaTime, 1f, turnMoveSpeedMod);
         float diff = targetTurnSpeed - currentTurnSpeed;
 
         currentTurnSpeed += diff * accelerationRate;

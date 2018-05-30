@@ -29,4 +29,9 @@ public class PlayerMotor : Motor
     {
         inputVector = new Vector3(xMov, 0f, yMov); ;
     }
+
+    public override void Boost(bool pressed)
+    {
+        throw new System.NotImplementedException();
+    }
 }

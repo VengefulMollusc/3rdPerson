@@ -4,6 +4,8 @@ public abstract class Motor : MonoBehaviour
 {
     public abstract void Move(float xMov, float yMov);
 
+    public abstract void Boost(bool pressed);
+
     //public abstract void MoveCamera(float xMov, float yMov);
 
     //public abstract void Jump(bool pressed);

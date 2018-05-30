@@ -15,12 +15,11 @@ public class InputController : MonoBehaviour
     private string xCamAxis = "LookX";
     [SerializeField]
     private string yCamAxis = "LookY";
-    //[SerializeField]
-    //private string jumpButton = "Jump";
-    //[SerializeField]
-    //private string crouchButton = "Crouch";
 
-    private KeyCode boostKey = KeyCode.K;
+    private KeyCode upAbility = KeyCode.I;
+    private KeyCode downAbility = KeyCode.K;
+    private KeyCode leftAbility = KeyCode.J;
+    private KeyCode rightAbility = KeyCode.L;
 
     void Start()
     {
@@ -34,10 +33,11 @@ public class InputController : MonoBehaviour
         // Get vertical and horizontal input vectors
         currentMotor.Move(Input.GetAxisRaw(xMovAxis), Input.GetAxisRaw(yMovAxis));
 
-        if (Input.GetKeyDown(boostKey))
+        // Boost
+        if (Input.GetKeyDown(downAbility))
             currentMotor.Boost(true);
 
-        if (Input.GetKeyUp(boostKey))
+        if (Input.GetKeyUp(downAbility))
             currentMotor.Boost(false);
 
         //// Get vertical and horizontal camera movement

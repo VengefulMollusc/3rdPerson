@@ -17,7 +17,7 @@ public class ShipMotor : Motor
     private const float throttleAdjustSpeed = 1f;
     private const float turnAdjustSpeed = 2f;
 
-    private const float speedAccelerationRate = 0.005f;
+    private const float speedAccelerationRate = 0.01f;
     private const float turnAccelerationRate = 0.02f;
 
     private const float reverseSpeed = -0.5f;
@@ -57,7 +57,7 @@ public class ShipMotor : Motor
         Vector3 projectedVector = transform.forward * currentSpeed * stepSize;
         Vector3 startPos = transform.position;
         rot = Quaternion.AngleAxis(currentTurnSpeed * stepSize, Vector3.up);
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 20; i++)
         {
             Debug.DrawLine(startPos, startPos + projectedVector, Color.green, 0.2f);
             startPos += projectedVector;

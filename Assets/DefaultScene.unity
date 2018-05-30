@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 1090277652}
   - component: {fileID: 1090277651}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Ship1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -319,7 +319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 437075a923cabdf41b213273e20b9837, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseMoveSpeed: 2
+  baseMoveSpeed: 5
   baseTurnSpeed: 20
 --- !u!1 &1726239487
 GameObject:

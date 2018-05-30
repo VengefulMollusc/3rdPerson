@@ -6,24 +6,25 @@ using UnityEngine;
 public class ShipMotor : Motor
 {
     [SerializeField]
-    private float baseMoveSpeed = 1f; // 1f
+    private float baseMoveSpeed = 5f; // 1f
 
     [SerializeField]
     private float baseTurnSpeed = 20f; // 20f
 
     private const float moveSpeedTurnMod = 0.5f;
-    private const float turnMoveSpeedMod = 0.75f;
+    private const float turnMoveSpeedMod = 0.8f;
 
     private const float throttleAdjustSpeed = 1f;
-    private const float yawAdjustSpeed = 1f;
+    private const float turnAdjustSpeed = 2f;
 
-    private const float accelerationRate = 1f; // 0.01
+    private const float speedAccelerationRate = 0.005f;
+    private const float turnAccelerationRate = 0.02f;
     //private const float decelerationRate = 0.01f;
 
     private const float reverseSpeed = -0.5f;
 
     private float throttleState;
-    private float yawControlState;
+    private float turnControlState;
 
     private float currentSpeed;
     private float currentTurnSpeed;
@@ -63,7 +64,7 @@ public class ShipMotor : Motor
             projectedVector = rot * projectedVector;
         }
         Debug.DrawLine(transform.position, transform.position + transform.forward * 10f, Color.cyan, 0.2f);
-        Debug.Log(throttleState.ToString("F2") + " " + yawControlState.ToString("F2") + " : " + (currentSpeed / Time.deltaTime).ToString("F2") + " " + (currentTurnSpeed / Time.deltaTime).ToString("F2"));
+        Debug.Log(throttleState.ToString("F2") + " " + turnControlState.ToString("F2") + " : " + (currentSpeed / Time.deltaTime).ToString("F2") + " " + (currentTurnSpeed / Time.deltaTime).ToString("F2"));
     }
 
     void UpdateSpeed()
@@ -72,16 +73,16 @@ public class ShipMotor : Motor
             Utilities.MapValues(Mathf.Abs(currentTurnSpeed * currentTurnSpeed), 0f, baseTurnSpeed * Time.deltaTime, 1f, moveSpeedTurnMod); 
         float diff = targetSpeed - currentSpeed;
         
-        currentSpeed += diff * accelerationRate;
+        currentSpeed += diff * speedAccelerationRate;
     }
 
     void UpdateTurn()
     {
-        float targetTurnSpeed = yawControlState * baseTurnSpeed * Time.deltaTime * 
+        float targetTurnSpeed = turnControlState * baseTurnSpeed * Time.deltaTime * 
             Utilities.MapValues(Mathf.Abs(currentSpeed), 0f, baseMoveSpeed * Time.deltaTime, 1f, turnMoveSpeedMod);
         float diff = targetTurnSpeed - currentTurnSpeed;
 
-        currentTurnSpeed += diff * accelerationRate;
+        currentTurnSpeed += diff * turnAccelerationRate;
     }
 
     void AdjustThrottle(float adjustVal)
@@ -92,7 +93,7 @@ public class ShipMotor : Motor
 
     void AdjustYaw(float adjustVal)
     {
-        yawControlState += adjustVal * yawAdjustSpeed * Time.deltaTime;
-        yawControlState = Mathf.Clamp(yawControlState, -1f, 1f);
+        turnControlState += adjustVal * turnAdjustSpeed * Time.deltaTime;
+        turnControlState = Mathf.Clamp(turnControlState, -1f, 1f);
     }
 }

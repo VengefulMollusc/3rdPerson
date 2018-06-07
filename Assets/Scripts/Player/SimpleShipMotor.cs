@@ -7,15 +7,21 @@ public class SimpleShipMotor : Motor
 {
     [SerializeField]
     private float baseMoveSpeed = 5f; // 5f
+    private float baseTurnSpeed = 2f; // 20f
 
-    [SerializeField]
-    private float baseTurnSpeed = 20f; // 20f
+    private float acceleration = 1f;
 
     private Vector3 movementVector;
+    private Vector3 facingVector;
 
     // boost variables
     private bool boosting;
     private const float boostFactor = 2f;
+
+    void Start()
+    {
+        facingVector = transform.forward;
+    }
 
     public override void Move(Vector2 inputVector)
     {
@@ -24,7 +30,11 @@ public class SimpleShipMotor : Motor
         if (boosting)
             input *= boostFactor;
 
-        movementVector = input * baseMoveSpeed;
+        Vector3 newMovementVector = input * baseMoveSpeed;
+        movementVector = Vector3.RotateTowards(movementVector, newMovementVector, baseTurnSpeed * Time.deltaTime, acceleration * Time.deltaTime);
+
+        if (movementVector != Vector3.zero)
+            facingVector = movementVector.normalized;
     }
 
     public override void UseUpAbility(bool pressed)
@@ -50,7 +60,7 @@ public class SimpleShipMotor : Motor
     void Update()
     {
         Debug.Log(movementVector);
-        transform.rotation = Quaternion.LookRotation(movementVector);
+        transform.rotation = Quaternion.LookRotation(facingVector);
         transform.position += movementVector;
     }
 }

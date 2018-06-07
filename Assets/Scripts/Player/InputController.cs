@@ -31,14 +31,18 @@ public class InputController : MonoBehaviour
     void Update()
     {
         // Get vertical and horizontal input vectors
-        currentMotor.Move(Input.GetAxisRaw(xMovAxis), Input.GetAxisRaw(yMovAxis));
+        Vector2 inputVector = new Vector2(Input.GetAxisRaw(xMovAxis), Input.GetAxisRaw(yMovAxis));
+        if (inputVector.magnitude > 1f)
+            inputVector.Normalize();
+
+        currentMotor.Move(inputVector);
 
         // Boost
         if (Input.GetKeyDown(downAbility))
-            currentMotor.Boost(true);
+            currentMotor.UseDownAbility(true);
 
         if (Input.GetKeyUp(downAbility))
-            currentMotor.Boost(false);
+            currentMotor.UseDownAbility(false);
 
         //// Get vertical and horizontal camera movement
         //float xMov = Input.GetAxisRaw(xCamAxis) * Time.deltaTime;

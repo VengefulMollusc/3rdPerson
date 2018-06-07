@@ -32,15 +32,30 @@ public class ShipMotor : Motor
     private bool boosting;
     private const float boostFactor = 2f;
 
-    public override void Move(float xMov, float yMov)
+    public override void Move(Vector2 inputVector)
     {
-        AdjustThrottle(yMov);
-        AdjustTurn(xMov);
+        AdjustThrottle(inputVector.y);
+        AdjustTurn(inputVector.x);
     }
 
-    public override void Boost(bool pressed)
+    public override void UseUpAbility(bool pressed)
+    {
+        Debug.Log("Fire Forward");
+    }
+
+    public override void UseDownAbility(bool pressed)
     {
         boosting = pressed;
+    }
+
+    public override void UseLeftAbility(bool pressed)
+    {
+        Debug.Log("Fire Left");
+    }
+
+    public override void UseRightAbility(bool pressed)
+    {
+        Debug.Log("Fire Right");
     }
 
     void Update()

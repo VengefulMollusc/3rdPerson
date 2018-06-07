@@ -25,12 +25,27 @@ public class PlayerMotor : Motor
         rb.velocity = inputVector * movementSpeed;
     }
 
-    public override void Move(float xMov, float yMov)
+    public override void Move(Vector2 inputVector)
     {
-        inputVector = new Vector3(xMov, 0f, yMov); ;
+        inputVector = new Vector3(inputVector.x, 0f, inputVector.y); ;
     }
 
-    public override void Boost(bool pressed)
+    public override void UseUpAbility(bool pressed)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void UseDownAbility(bool pressed)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void UseLeftAbility(bool pressed)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void UseRightAbility(bool pressed)
     {
         throw new System.NotImplementedException();
     }

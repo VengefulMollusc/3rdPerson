@@ -2,13 +2,13 @@
 
 public abstract class Motor : MonoBehaviour
 {
-    public abstract void Move(float xMov, float yMov);
+    public abstract void Move(Vector2 inputVector);
 
-    public abstract void Boost(bool pressed);
+    public abstract void UseUpAbility(bool pressed);
 
-    //public abstract void MoveCamera(float xMov, float yMov);
+    public abstract void UseDownAbility(bool pressed);
 
-    //public abstract void Jump(bool pressed);
+    public abstract void UseLeftAbility(bool pressed);
 
-    //public abstract void Crouch(bool pressed);
+    public abstract void UseRightAbility(bool pressed);
 }

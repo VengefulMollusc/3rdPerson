@@ -23,6 +23,13 @@ public class SimpleShipMotor : Motor
         facingVector = transform.forward;
     }
 
+    void Update()
+    {
+        Debug.Log(movementVector);
+        transform.rotation = Quaternion.LookRotation(facingVector);
+        transform.position += movementVector;
+    }
+
     public override void Move(Vector2 inputVector)
     {
         Vector3 input = new Vector3(inputVector.x, 0f, inputVector.y) * Time.deltaTime;
@@ -55,12 +62,5 @@ public class SimpleShipMotor : Motor
     public override void UseRightAbility(bool pressed)
     {
         Debug.Log("Fire Right");
-    }
-
-    void Update()
-    {
-        Debug.Log(movementVector);
-        transform.rotation = Quaternion.LookRotation(facingVector);
-        transform.position += movementVector;
     }
 }

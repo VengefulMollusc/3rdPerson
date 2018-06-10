@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class SimpleShipMotor : Motor
+public class MechMotor : Motor
 {
     [SerializeField]
     private float baseMoveSpeed = 5f; // 5f

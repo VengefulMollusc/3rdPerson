@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 122353604}
   - component: {fileID: 122353603}
   m_Layer: 0
-  m_Name: Ship1 (1)
+  m_Name: Mech1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -144,7 +144,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseMoveSpeed: 5
-  baseTurnSpeed: 20
 --- !u!54 &122353604
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -696,7 +695,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72a7d6af93a157848a33fc699ddb0181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentMotor: {fileID: 122353603}
+  currentMotor: {fileID: 0}
   xMovAxis: Horizontal
   yMovAxis: Vertical
   xCamAxis: LookX

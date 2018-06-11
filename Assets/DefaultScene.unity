@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 122353605}
   - component: {fileID: 122353604}
   - component: {fileID: 122353603}
+  - component: {fileID: 122353609}
   m_Layer: 0
   m_Name: Mech1
   m_TagString: Untagged
@@ -143,7 +144,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b424cc388b578ce43b3ce66c41bd0510, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseMoveSpeed: 5
+  baseMoveSpeed: 4
+  baseTurnSpeed: 2
+  upAbility: {fileID: 0}
+  downAbility: {fileID: 122353609}
+  leftAbility: {fileID: 0}
+  rightAbility: {fileID: 0}
 --- !u!54 &122353604
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -226,6 +232,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &122353609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 122353602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab41aa2473304b94bbb1a2d5ba7a3329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boostFactor: 1.5
 --- !u!1 &398214168
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,6 +453,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseMoveSpeed: 5
   baseTurnSpeed: 20
+  upAbility: {fileID: 0}
+  downAbility: {fileID: 0}
+  leftAbility: {fileID: 0}
+  rightAbility: {fileID: 0}
 --- !u!1 &1687908497
 GameObject:
   m_ObjectHideFlags: 0

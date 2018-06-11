@@ -29,24 +29,4 @@ public class PlayerMotor : Motor
     {
         input = new Vector3(input.x, 0f, input.y); ;
     }
-
-    public override void UseUpAbility(bool pressed)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void UseDownAbility(bool pressed)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void UseLeftAbility(bool pressed)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void UseRightAbility(bool pressed)
-    {
-        throw new System.NotImplementedException();
-    }
 }

@@ -5,12 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class ShipMotor : Motor
 {
-    [SerializeField]
-    private float baseMoveSpeed = 5f; // 5f
-
-    [SerializeField]
-    private float baseTurnSpeed = 20f; // 20f
-
     private const float moveSpeedTurnMod = 0.5f;
     private const float turnMoveSpeedMod = 0.8f;
 
@@ -36,26 +30,6 @@ public class ShipMotor : Motor
     {
         AdjustThrottle(input.y);
         AdjustTurn(input.x);
-    }
-
-    public override void UseUpAbility(bool pressed)
-    {
-        Debug.Log("Fire Forward");
-    }
-
-    public override void UseDownAbility(bool pressed)
-    {
-        boosting = pressed;
-    }
-
-    public override void UseLeftAbility(bool pressed)
-    {
-        Debug.Log("Fire Left");
-    }
-
-    public override void UseRightAbility(bool pressed)
-    {
-        Debug.Log("Fire Right");
     }
 
     void Update()

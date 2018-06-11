@@ -5,18 +5,15 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class MechMotor : Motor
 {
-    [SerializeField]
-    private float baseMoveSpeed = 5f; // 5f
-    private float baseTurnSpeed = 2f; // 20f
-
-    private float acceleration = 1f;
+    private float baseMoveSpeed = 4f;
+    private float baseTurnSpeed = 2f;
+    private const float boostFactor = 1.5f;
 
     private Vector3 movementVector;
     private Vector3 facingVector;
 
     // boost variables
     private bool boosting;
-    private const float boostFactor = 2f;
 
     void Start()
     {
@@ -25,23 +22,27 @@ public class MechMotor : Motor
 
     void Update()
     {
-        Debug.Log(movementVector);
         transform.rotation = Quaternion.LookRotation(facingVector);
         transform.position += movementVector;
     }
 
-    public override void Move(Vector2 inputVector)
+    public override void Move(Vector2 input)
     {
-        Vector3 input = new Vector3(inputVector.x, 0f, inputVector.y) * Time.deltaTime;
+        Vector3 inputVector = new Vector3(input.x, 0f, input.y) * Time.deltaTime;
 
         if (boosting)
-            input *= boostFactor;
+        {
+            inputVector *= boostFactor;
+            facingVector = Vector3.RotateTowards(facingVector, inputVector,
+                baseTurnSpeed * boostFactor * Time.deltaTime, 0);
+        }
+        else
+        {
+            facingVector = Vector3.RotateTowards(facingVector, inputVector, 
+                baseTurnSpeed * Time.deltaTime, 0);
+        }
 
-        Vector3 newMovementVector = input * baseMoveSpeed;
-        movementVector = Vector3.RotateTowards(movementVector, newMovementVector, baseTurnSpeed * Time.deltaTime, acceleration * Time.deltaTime);
-
-        if (movementVector != Vector3.zero)
-            facingVector = movementVector.normalized;
+        movementVector = inputVector * baseMoveSpeed;
     }
 
     public override void UseUpAbility(bool pressed)

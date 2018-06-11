@@ -25,9 +25,9 @@ public class PlayerMotor : Motor
         rb.velocity = inputVector * movementSpeed;
     }
 
-    public override void Move(Vector2 inputVector)
+    public override void Move(Vector2 input)
     {
-        inputVector = new Vector3(inputVector.x, 0f, inputVector.y); ;
+        input = new Vector3(input.x, 0f, input.y); ;
     }
 
     public override void UseUpAbility(bool pressed)

@@ -2,7 +2,7 @@
 
 public abstract class Motor : MonoBehaviour
 {
-    public abstract void Move(Vector2 inputVector);
+    public abstract void Move(Vector2 input);
 
     public abstract void UseUpAbility(bool pressed);
 

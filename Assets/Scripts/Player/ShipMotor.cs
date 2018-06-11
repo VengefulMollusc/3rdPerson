@@ -32,10 +32,10 @@ public class ShipMotor : Motor
     private bool boosting;
     private const float boostFactor = 2f;
 
-    public override void Move(Vector2 inputVector)
+    public override void Move(Vector2 input)
     {
-        AdjustThrottle(inputVector.y);
-        AdjustTurn(inputVector.x);
+        AdjustThrottle(input.y);
+        AdjustTurn(input.x);
     }
 
     public override void UseUpAbility(bool pressed)

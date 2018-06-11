@@ -695,7 +695,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72a7d6af93a157848a33fc699ddb0181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentMotor: {fileID: 0}
+  currentMotor: {fileID: 122353603}
   xMovAxis: Horizontal
   yMovAxis: Vertical
   xCamAxis: LookX

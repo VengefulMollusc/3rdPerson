@@ -351,6 +351,7 @@ GameObject:
   - component: {fileID: 1090277647}
   - component: {fileID: 1090277652}
   - component: {fileID: 1090277651}
+  - component: {fileID: 1090277653}
   m_Layer: 0
   m_Name: Ship1
   m_TagString: Untagged
@@ -454,9 +455,21 @@ MonoBehaviour:
   baseMoveSpeed: 5
   baseTurnSpeed: 40
   upAbility: {fileID: 0}
-  downAbility: {fileID: 0}
+  downAbility: {fileID: 1090277653}
   leftAbility: {fileID: 0}
   rightAbility: {fileID: 0}
+--- !u!114 &1090277653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1090277646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab41aa2473304b94bbb1a2d5ba7a3329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boostFactor: 1.5
 --- !u!1 &1687908497
 GameObject:
   m_ObjectHideFlags: 0

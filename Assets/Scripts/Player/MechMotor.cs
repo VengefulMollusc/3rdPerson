@@ -14,7 +14,7 @@ public class MechMotor : Motor
 
     public override void Move(Vector2 input)
     {
-        Vector3 inputVector = new Vector3(input.x, 0f, input.y) * Time.deltaTime;
+        Vector3 inputVector = new Vector3(input.x, 0f, input.y);
 
         if (!speedModifier.Equals(1f))
         {
@@ -29,6 +29,6 @@ public class MechMotor : Motor
         }
 
         transform.rotation = Quaternion.LookRotation(facingVector);
-        transform.position += inputVector * baseMoveSpeed;
+        transform.position += inputVector * baseMoveSpeed * Time.deltaTime;
     }
 }

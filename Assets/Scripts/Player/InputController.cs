@@ -31,7 +31,7 @@ public class InputController : MonoBehaviour
     void Update()
     {
         // Get vertical and horizontal input vectors
-        Vector2 inputVector = new Vector2(Input.GetAxisRaw(xMovAxis), Input.GetAxisRaw(yMovAxis));
+        Vector2 inputVector = new Vector2(Input.GetAxis(xMovAxis), Input.GetAxis(yMovAxis));
         if (inputVector.magnitude > 1f)
             inputVector.Normalize();
 

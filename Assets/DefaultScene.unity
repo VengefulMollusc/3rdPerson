@@ -132,7 +132,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &122353603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,7 +357,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!23 &1090277647
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -452,7 +452,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseMoveSpeed: 5
-  baseTurnSpeed: 20
+  baseTurnSpeed: 40
   upAbility: {fileID: 0}
   downAbility: {fileID: 0}
   leftAbility: {fileID: 0}
@@ -717,7 +717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72a7d6af93a157848a33fc699ddb0181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentMotor: {fileID: 122353603}
+  currentMotor: {fileID: 1090277652}
   xMovAxis: Horizontal
   yMovAxis: Vertical
   xCamAxis: LookX

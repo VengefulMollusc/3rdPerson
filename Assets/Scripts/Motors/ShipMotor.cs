@@ -16,7 +16,7 @@ public class ShipMotor : Motor
 
     //private float changeThrottle;
 
-    public override void Move(Vector2 input)
+    protected override void ApplyMove(Vector2 input)
     {
         //AdjustThrottle(changeThrottle);
         AdjustThrottle(input.y);

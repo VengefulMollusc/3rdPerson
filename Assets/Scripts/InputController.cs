@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InputController : MonoBehaviour
 {
-    [SerializeField] private Motor currentMotor;
+    [SerializeField] private Motor motor;
 
     [Header("Control Settings")]
     [SerializeField]
@@ -21,6 +21,8 @@ public class InputController : MonoBehaviour
     private KeyCode leftAbility = KeyCode.J;
     private KeyCode rightAbility = KeyCode.L;
 
+    private Vector2 inputVector;
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -31,39 +33,44 @@ public class InputController : MonoBehaviour
     void Update()
     {
         // Get vertical and horizontal input vectors
-        Vector2 inputVector = new Vector2(Input.GetAxis(xMovAxis), Input.GetAxis(yMovAxis));
+        inputVector = new Vector2(Input.GetAxis(xMovAxis), Input.GetAxis(yMovAxis));
         if (inputVector.magnitude > 1f)
             inputVector.Normalize();
 
-        currentMotor.Move(inputVector);
+        motor.Move(inputVector);
 
         // Abilities
         // Up
         if (Input.GetKeyDown(upAbility))
-            currentMotor.UseUpAbility(true);
+            motor.UseUpAbility(true);
 
         if (Input.GetKeyUp(upAbility))
-            currentMotor.UseUpAbility(false);
+            motor.UseUpAbility(false);
 
         // Down
         if (Input.GetKeyDown(downAbility))
-            currentMotor.UseDownAbility(true);
+            motor.UseDownAbility(true);
 
         if (Input.GetKeyUp(downAbility))
-            currentMotor.UseDownAbility(false);
+            motor.UseDownAbility(false);
 
         // Left
         if (Input.GetKeyDown(leftAbility))
-            currentMotor.UseLeftAbility(true);
+            motor.UseLeftAbility(true);
 
         if (Input.GetKeyUp(leftAbility))
-            currentMotor.UseLeftAbility(false);
+            motor.UseLeftAbility(false);
 
         // Right
         if (Input.GetKeyDown(rightAbility))
-            currentMotor.UseRightAbility(true);
+            motor.UseRightAbility(true);
 
         if (Input.GetKeyUp(rightAbility))
-            currentMotor.UseRightAbility(false);
+            motor.UseRightAbility(false);
+    }
+
+    public Vector2 GetInputVector()
+    {
+        return inputVector;
     }
 }

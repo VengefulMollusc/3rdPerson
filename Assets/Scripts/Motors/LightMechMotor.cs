@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class LightMechMotor : Motor
 {
-    public override void Move(Vector2 input)
+    protected override void ApplyMove(Vector2 input)
     {
         Vector3 movementDirection = new Vector3(input.x, 0f, input.y) * baseMoveSpeed * speedModifier * Time.deltaTime;
         transform.position += movementDirection;

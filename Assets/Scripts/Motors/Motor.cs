@@ -19,35 +19,47 @@ public abstract class Motor : MonoBehaviour
     [SerializeField] private Ability rightAbility;
 
     protected float speedModifier = 1f;
+    protected bool inputEnabled = true;
 
-    public abstract void Move(Vector2 input);
+    public virtual void Move(Vector2 input)
+    {
+        if (inputEnabled)
+            ApplyMove(input);
+    }
+
+    protected abstract void ApplyMove(Vector2 input);
 
     public virtual void UseUpAbility(bool pressed)
     {
-        if (upAbility != null)
+        if (inputEnabled && upAbility != null)
             upAbility.Activate(pressed);
     }
 
     public virtual void UseDownAbility(bool pressed)
     {
-        if (downAbility != null)
+        if (inputEnabled && downAbility != null)
             downAbility.Activate(pressed);
     }
 
     public virtual void UseLeftAbility(bool pressed)
     {
-        if (leftAbility != null)
+        if (inputEnabled && leftAbility != null)
             leftAbility.Activate(pressed);
     }
 
     public virtual void UseRightAbility(bool pressed)
     {
-        if (rightAbility != null)
+        if (inputEnabled && rightAbility != null)
             rightAbility.Activate(pressed);
     }
 
     public virtual void ModifySpeed(float speedMod)
     {
         speedModifier = speedMod;
+    }
+
+    public virtual void EnableInput(bool enabled)
+    {
+        inputEnabled = enabled;
     }
 }

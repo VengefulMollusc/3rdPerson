@@ -208,9 +208,9 @@ GameObject:
   - component: {fileID: 122353606}
   - component: {fileID: 122353605}
   - component: {fileID: 122353604}
+  - component: {fileID: 122353610}
   - component: {fileID: 122353603}
   - component: {fileID: 122353609}
-  - component: {fileID: 122353610}
   m_Layer: 0
   m_Name: Mech1
   m_TagString: Untagged
@@ -340,7 +340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72a7d6af93a157848a33fc699ddb0181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentMotor: {fileID: 122353603}
+  motor: {fileID: 122353603}
   xMovAxis: Horizontal
   yMovAxis: Vertical
   xCamAxis: LookX
@@ -357,9 +357,10 @@ GameObject:
   - component: {fileID: 390700728}
   - component: {fileID: 390700727}
   - component: {fileID: 390700726}
-  - component: {fileID: 390700725}
-  - component: {fileID: 390700724}
   - component: {fileID: 390700731}
+  - component: {fileID: 390700724}
+  - component: {fileID: 390700725}
+  - component: {fileID: 390700732}
   m_Layer: 0
   m_Name: LightMech1
   m_TagString: Untagged
@@ -380,7 +381,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseMoveSpeed: 6
   baseTurnSpeed: 2
-  upAbility: {fileID: 0}
+  upAbility: {fileID: 390700732}
   downAbility: {fileID: 390700725}
   leftAbility: {fileID: 0}
   rightAbility: {fileID: 0}
@@ -489,11 +490,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72a7d6af93a157848a33fc699ddb0181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentMotor: {fileID: 390700724}
+  motor: {fileID: 390700724}
   xMovAxis: Horizontal
   yMovAxis: Vertical
   xCamAxis: LookX
   yCamAxis: LookY
+--- !u!114 &390700732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 390700723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 471a7807a56dcf04bade8f74d6db535f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashDistance: 5
+  dashTime: 0.1
 --- !u!1 &398214168
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,10 +613,10 @@ GameObject:
   - component: {fileID: 1090277649}
   - component: {fileID: 1090277648}
   - component: {fileID: 1090277647}
-  - component: {fileID: 1090277652}
   - component: {fileID: 1090277651}
-  - component: {fileID: 1090277653}
   - component: {fileID: 1090277654}
+  - component: {fileID: 1090277652}
+  - component: {fileID: 1090277653}
   m_Layer: 0
   m_Name: Ship1
   m_TagString: Untagged
@@ -732,7 +746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72a7d6af93a157848a33fc699ddb0181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentMotor: {fileID: 1090277652}
+  motor: {fileID: 1090277652}
   xMovAxis: Horizontal
   yMovAxis: Vertical
   xCamAxis: LookX

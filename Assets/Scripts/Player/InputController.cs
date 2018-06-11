@@ -37,30 +37,33 @@ public class InputController : MonoBehaviour
 
         currentMotor.Move(inputVector);
 
-        // Boost
+        // Abilities
+        // Up
+        if (Input.GetKeyDown(upAbility))
+            currentMotor.UseUpAbility(true);
+
+        if (Input.GetKeyUp(upAbility))
+            currentMotor.UseUpAbility(false);
+
+        // Down
         if (Input.GetKeyDown(downAbility))
             currentMotor.UseDownAbility(true);
 
         if (Input.GetKeyUp(downAbility))
             currentMotor.UseDownAbility(false);
 
-        //// Get vertical and horizontal camera movement
-        //float xMov = Input.GetAxisRaw(xCamAxis) * Time.deltaTime;
-        //float yMov = Input.GetAxisRaw(yCamAxis) * Time.deltaTime;
-        //currentMotor.MoveCamera(xMov, yMov);
+        // Left
+        if (Input.GetKeyDown(leftAbility))
+            currentMotor.UseLeftAbility(true);
 
-        //// Check for Jump
-        //if (Input.GetButtonDown(jumpButton))
-        //    currentMotor.Jump(true);
+        if (Input.GetKeyUp(leftAbility))
+            currentMotor.UseLeftAbility(false);
 
-        //if (Input.GetButtonUp(jumpButton))
-        //    currentMotor.Jump(false);
+        // Right
+        if (Input.GetKeyDown(rightAbility))
+            currentMotor.UseRightAbility(true);
 
-        //// Check for Crouch
-        //if (Input.GetButtonDown(crouchButton))
-        //    currentMotor.Crouch(true);
-
-        //if (Input.GetButtonUp(crouchButton))
-        //    currentMotor.Crouch(false);
+        if (Input.GetKeyUp(rightAbility))
+            currentMotor.UseRightAbility(false);
     }
 }

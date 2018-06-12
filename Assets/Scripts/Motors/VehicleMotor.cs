@@ -11,7 +11,7 @@ public class VehicleMotor : Motor
     private bool throttle;
     private bool brake;
 
-    private float currentSpeed = 0f;
+    private float currentSpeed;
     private float turnStrength;
 
     protected override void ApplyMove(Vector2 input)

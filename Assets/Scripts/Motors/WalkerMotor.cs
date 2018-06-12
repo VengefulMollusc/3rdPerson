@@ -17,7 +17,7 @@ public class WalkerMotor : Motor
         Vector3 inputVector = new Vector3(input.x, 0f, input.y);
 
         facingVector = Vector3.RotateTowards(facingVector, inputVector,
-            baseTurnSpeed * speedModifier * Time.deltaTime, 0);
+            baseTurnSpeed * inputVector.sqrMagnitude * speedModifier * Time.deltaTime, 0);
 
         transform.rotation = Quaternion.LookRotation(facingVector);
         transform.position += inputVector * baseMoveSpeed * speedModifier * Time.deltaTime;

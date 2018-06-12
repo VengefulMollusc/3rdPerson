@@ -18,9 +18,9 @@ public class DashAbility : Ability
         inputController = GetComponent<InputController>();
     }
 
-    public override void Activate(bool activated)
+    public override void Activate(bool _activated)
     {
-        if (!activated)
+        if (!_activated)
             return;
 
         // Dash in input direction

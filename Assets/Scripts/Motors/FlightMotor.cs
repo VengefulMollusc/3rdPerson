@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class ShipMotor : Motor
+public class FlightMotor : Motor
 {
     private const float throttleAdjustSpeed = 1f;
 
-    private const float reverseSpeed = -0.5f;
+    private const float minSpeed = -0.5f;
 
     private float throttleState;
 
@@ -46,7 +46,7 @@ public class ShipMotor : Motor
     void AdjustThrottle(float adjustVal)
     {
         throttleState += adjustVal * throttleAdjustSpeed * Time.deltaTime;
-        throttleState = Mathf.Clamp(throttleState, reverseSpeed, 1f);
+        throttleState = Mathf.Clamp(throttleState, minSpeed, 1f);
         currentSpeed = throttleState * baseMoveSpeed * Time.deltaTime;
     }
 }

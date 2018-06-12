@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class MechMotor : Motor
+public class WalkerMotor : Motor
 {
     private Vector3 facingVector;
 

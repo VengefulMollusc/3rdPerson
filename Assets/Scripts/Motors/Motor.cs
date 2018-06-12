@@ -21,45 +21,45 @@ public abstract class Motor : MonoBehaviour
     protected float speedModifier = 1f;
     protected bool inputEnabled = true;
 
-    public virtual void Move(Vector2 input)
+    public virtual void Move(Vector2 _input)
     {
         if (inputEnabled)
-            ApplyMove(input);
+            ApplyMove(_input);
     }
 
     protected abstract void ApplyMove(Vector2 input);
 
-    public virtual void UseUpAbility(bool pressed)
+    public virtual void UseUpAbility(bool _pressed)
     {
         if (inputEnabled && upAbility != null)
-            upAbility.Activate(pressed);
+            upAbility.Activate(_pressed);
     }
 
-    public virtual void UseDownAbility(bool pressed)
+    public virtual void UseDownAbility(bool _pressed)
     {
         if (inputEnabled && downAbility != null)
-            downAbility.Activate(pressed);
+            downAbility.Activate(_pressed);
     }
 
-    public virtual void UseLeftAbility(bool pressed)
+    public virtual void UseLeftAbility(bool _pressed)
     {
         if (inputEnabled && leftAbility != null)
-            leftAbility.Activate(pressed);
+            leftAbility.Activate(_pressed);
     }
 
-    public virtual void UseRightAbility(bool pressed)
+    public virtual void UseRightAbility(bool _pressed)
     {
         if (inputEnabled && rightAbility != null)
-            rightAbility.Activate(pressed);
+            rightAbility.Activate(_pressed);
     }
 
-    public virtual void ModifySpeed(float speedMod)
+    public virtual void ModifySpeed(float _speedMod)
     {
-        speedModifier = speedMod;
+        speedModifier = _speedMod;
     }
 
-    public virtual void EnableInput(bool enabled)
+    public virtual void EnableInput(bool _enabled)
     {
-        inputEnabled = enabled;
+        inputEnabled = _enabled;
     }
 }

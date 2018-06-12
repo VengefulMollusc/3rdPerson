@@ -16,19 +16,10 @@ public class MechMotor : Motor
     {
         Vector3 inputVector = new Vector3(input.x, 0f, input.y);
 
-        if (!speedModifier.Equals(1f))
-        {
-            inputVector *= speedModifier;
-            facingVector = Vector3.RotateTowards(facingVector, inputVector,
-                baseTurnSpeed * speedModifier * Time.deltaTime, 0);
-        }
-        else
-        {
-            facingVector = Vector3.RotateTowards(facingVector, inputVector, 
-                baseTurnSpeed * Time.deltaTime, 0);
-        }
+        facingVector = Vector3.RotateTowards(facingVector, inputVector,
+            baseTurnSpeed * speedModifier * Time.deltaTime, 0);
 
         transform.rotation = Quaternion.LookRotation(facingVector);
-        transform.position += inputVector * baseMoveSpeed * Time.deltaTime;
+        transform.position += inputVector * baseMoveSpeed * speedModifier * Time.deltaTime;
     }
 }

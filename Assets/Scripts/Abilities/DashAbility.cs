@@ -20,6 +20,9 @@ public class DashAbility : Ability
 
     public override void Activate(bool activated)
     {
+        if (!activated)
+            return;
+
         // Dash in input direction
         Vector2 inputVector = inputController.GetInputVector();
         Vector3 dashVector = new Vector3(inputVector.x, 0f, inputVector.y);

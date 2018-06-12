@@ -358,7 +358,7 @@ GameObject:
   - component: {fileID: 390700727}
   - component: {fileID: 390700726}
   - component: {fileID: 390700731}
-  - component: {fileID: 390700724}
+  - component: {fileID: 390700733}
   - component: {fileID: 390700725}
   - component: {fileID: 390700732}
   m_Layer: 0
@@ -368,23 +368,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &390700724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 390700723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84545f8d576b3f942a162ce043616c15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseMoveSpeed: 6
-  baseTurnSpeed: 2
-  upAbility: {fileID: 390700732}
-  downAbility: {fileID: 390700725}
-  leftAbility: {fileID: 0}
-  rightAbility: {fileID: 0}
 --- !u!114 &390700725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -490,7 +473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72a7d6af93a157848a33fc699ddb0181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  motor: {fileID: 390700724}
+  motor: {fileID: 390700733}
   xMovAxis: Horizontal
   yMovAxis: Vertical
   xCamAxis: LookX
@@ -508,6 +491,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dashDistance: 5
   dashTime: 0.1
+--- !u!114 &390700733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 390700723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b424cc388b578ce43b3ce66c41bd0510, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseMoveSpeed: 6
+  baseTurnSpeed: 10
+  upAbility: {fileID: 390700732}
+  downAbility: {fileID: 390700725}
+  leftAbility: {fileID: 0}
+  rightAbility: {fileID: 0}
 --- !u!1 &398214168
 GameObject:
   m_ObjectHideFlags: 0
